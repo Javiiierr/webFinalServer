@@ -62,15 +62,16 @@ module.exports.login = async(req, res, next) => {
         const user = await UserModel.login(username, password); // call login function in Models/UserModel
         console.log(user)
         const token = createToken(user._id); // creates jet token with mongo ID
+        localStorage.setItem('jwt', token); // Store token in local storage
         console.log(token)
-        console.log(res.cookie("jwt", token, {
+        res.cookie("jwt", token, {
             domain: '.vercel.app', // Set the domain to '.vercel.app' to make it accessible to all subdomains of vercel.app
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge*1000,
             secure: false
-        }))
-
+        })
+        
         res.status(200).json({user:user._id,created:true}) // successfully found user
     
     } catch(err) {
