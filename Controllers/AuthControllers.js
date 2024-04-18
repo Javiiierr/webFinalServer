@@ -43,7 +43,8 @@ try {
         path: '/', // Set the path to '/'
         withCredentials: true,
         httpOnly: false,
-        maxAge: maxAge*1000
+        maxAge: maxAge*1000,
+        secure: false
     })
     res.status(201).json({user:user._id,created:true}) // successfully made user
 
@@ -67,7 +68,8 @@ module.exports.login = async(req, res, next) => {
             path: '/', // Set the path to '/'
             withCredentials: true,
             httpOnly: false,
-            maxAge: maxAge*1000
+            maxAge: maxAge*1000,
+            secure: false
         })
         res.status(200).json({user:user._id,created:true}) // successfully found user
     
