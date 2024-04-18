@@ -2,6 +2,9 @@ const { register, login } = require("../Controllers/AuthControllers"); // middle
 const { checkuser } = require("../Middlewares/Auth"); // middleware for / route
 const router = require("express").Router(); // dependency
 
+router.get("/", (req, res) => {
+    res.send("Hello from API");
+  });
 router.post("/", checkuser) // favourites and viewCart call this route
 router.post("/register",register) // signUp calls this route
 router.post("/login",login) // login calls this route
