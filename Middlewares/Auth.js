@@ -5,7 +5,7 @@ require("dotenv").config(); // import the dotenv library for .env file
 const jwtSecret = process.env.JWT_SECRET;
 
 module.exports.checkuser = (req, res, next) => {
-    const token = req.cookies.jwt; // get the jwt cookie
+    const token = localStorage.getItem('jwt'); // get the jwt token
     console.log("CHECK")
     if (token) {
         console.log("TOKEN")
