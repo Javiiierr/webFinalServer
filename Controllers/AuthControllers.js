@@ -69,7 +69,7 @@ module.exports.login = async(req, res, next) => {
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge*1000,
-            secure: true
+            secure: true,
             sameSite: 'None'
         })
         
