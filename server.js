@@ -23,7 +23,7 @@ mongoose.connect(mongo,{
 
 // lets us call the server like an API if its a GET or POST method from http://localhost:3000
 app.use(cors({
-    origin:["http://localhost:3000"], // change depending on where hosting front end
+    origin:["https://web-final-client-4b55.vercel.app"], // change depending on where hosting front end
     methods:["GET","POST"],
     credentials: true
 }));
