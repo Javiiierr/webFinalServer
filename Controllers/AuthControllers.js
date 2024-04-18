@@ -43,7 +43,7 @@ try {
         withCredentials: true,
         httpOnly: false,
         maxAge: maxAge*1000,
-        secure: false
+        secure: true
     })
     res.status(201).json({user:user._id,created:true}) // successfully made user
 
@@ -69,7 +69,7 @@ module.exports.login = async(req, res, next) => {
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge*1000,
-            secure: false
+            secure: true
         })
         
         res.status(200).json({user:user._id,created:true}) // successfully found user
