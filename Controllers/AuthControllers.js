@@ -38,15 +38,7 @@ try {
     console.log("REGISTER")
     const user = await UserModel.create({ userName: req.body.username, password: req.body.password }); // creates user
     const token = createToken(user._id); // creates jwt token using mongoID
-    res.cookie("jwt", token, {
-        domain: 'web-final-client-4b55.vercel.app', // Set the domain to '.vercel.app' to make it accessible to all subdomains of vercel.app
-        withCredentials: true,
-        httpOnly: false,
-        maxAge: maxAge*1000,
-        secure: true,
-        sameSite: 'None'
-    })
-    res.status(201).json({user:user._id,created:true}) // successfully made user
+    res.status(201).json({user:user._id,created:true,token}) // successfully found user
 
 } catch(err) {
     console.log("ERR")
@@ -64,16 +56,7 @@ module.exports.login = async(req, res, next) => {
         console.log(user)
         const token = createToken(user._id); // creates jet token with mongo ID
         console.log(token)
-        res.cookie("jwt", token, {
-            domain: 'web-final-client-4b55.vercel.app', // Set the domain to '.vercel.app' to make it accessible to all subdomains of vercel.app
-            withCredentials: true,
-            httpOnly: false,
-            maxAge: maxAge*1000,
-            secure: true,
-            sameSite: 'None'
-        })
-        
-        res.status(200).json({user:user._id,created:true}) // successfully found user
+        res.status(200).json({user:user._id,created:true,token}) // successfully found user
     
     } catch(err) {
         console.log("ERR")
