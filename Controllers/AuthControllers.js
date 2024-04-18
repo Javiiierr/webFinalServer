@@ -56,7 +56,9 @@ module.exports.login = async(req, res, next) => {
     try {
         console.log("LOGI")
         const { username, password } = req.body; // destructure req.body
+        console.log(username)
         const user = await UserModel.login(username, password); // call login function in Models/UserModel
+        console.log(user)
         const token = createToken(user._id); // creates jet token with mongo ID
         res.cookie("jwt", token, {
             withCredentials: true,
