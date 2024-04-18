@@ -61,7 +61,6 @@ module.exports.login = async(req, res, next) => {
         console.log(username)
         const user = await UserModel.login(username, password); // call login function in Models/UserModel
         console.log(user)
-        const token = createToken(user._id); // creates jet token with mongo ID
         localStorage.setItem('jwt', token); // Store token in local storage
         console.log(token)
         res.cookie("jwt", token, {
