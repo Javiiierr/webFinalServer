@@ -39,6 +39,7 @@ try {
     const user = await UserModel.create({ userName: req.body.username, password: req.body.password }); // creates user
     const token = createToken(user._id); // creates jwt token using mongoID
     res.cookie("jwt", token, {
+        domain: '.vercel.app', // Set the domain to '.vercel.app' to make it accessible to all subdomains of vercel.app
         withCredentials: true,
         httpOnly: false,
         maxAge: maxAge*1000,
@@ -62,6 +63,7 @@ module.exports.login = async(req, res, next) => {
         console.log(user)
         const token = createToken(user._id); // creates jet token with mongo ID
         res.cookie("jwt", token, {
+            domain: '.vercel.app', // Set the domain to '.vercel.app' to make it accessible to all subdomains of vercel.app
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge*1000,
