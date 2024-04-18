@@ -39,6 +39,7 @@ try {
     const user = await UserModel.create({ userName: req.body.username, password: req.body.password }); // creates user
     const token = createToken(user._id); // creates jwt token using mongoID
     res.cookie("jwt", token, {
+        domain: 'localhost', // Set the domain to 'localhost'
         withCredentials: true,
         httpOnly: false,
         maxAge: maxAge*1000
@@ -61,6 +62,7 @@ module.exports.login = async(req, res, next) => {
         console.log(user)
         const token = createToken(user._id); // creates jet token with mongo ID
         res.cookie("jwt", token, {
+            domain: 'localhost', // Set the domain to 'localhost'
             withCredentials: true,
             httpOnly: false,
             maxAge: maxAge*1000
