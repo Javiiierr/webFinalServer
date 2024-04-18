@@ -9,6 +9,7 @@ module.exports.checkuser = (req, res, next) => {
     console.log("CHECK")
     if (token) {
         console.log("TOKEN")
+        console.log(token)
         jwt.verify(token, jwtSecret, async (err, decodedToken) => { // verify the token 
             if (err) { // send error if not a match
                 console.log("NO MATCH")
