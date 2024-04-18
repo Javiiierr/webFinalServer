@@ -35,11 +35,9 @@ const handleErrors = (err) => {
 // called by signup in front end via API call
 module.exports.register = async(req, res, next) => {
 try {
-    console.log("REGISTER")
     const user = await UserModel.create({ userName: req.body.username, password: req.body.password }); // creates user
     const token = createToken(user._id); // creates jwt token using mongoID
-    res.status(201).json({user:user._id,created:true,token}) // successfully found user
-
+    res.status(201).json({user:user._id,created:true,token}) // send token to front end
 } catch(err) {
     console.log("ERR")
     const errors = handleErrors(err); // errors if missing username/password or username is taken
@@ -49,14 +47,10 @@ try {
 // called by login in front end via API call
 module.exports.login = async(req, res, next) => {
     try {
-        console.log("LOGI")
         const { username, password } = req.body; // destructure req.body
-        console.log(username)
         const user = await UserModel.login(username, password); // call login function in Models/UserModel
-        console.log(user)
         const token = createToken(user._id); // creates jet token with mongo ID
-        console.log(token)
-        res.status(200).json({user:user._id,created:true,token}) // successfully found user
+        res.status(200).json({user:user._id,created:true,token}) // send token to front end
     
     } catch(err) {
         console.log("ERR")
